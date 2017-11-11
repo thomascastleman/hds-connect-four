@@ -17,6 +17,9 @@ class State():
 					row -= 1
 					break
 
+			if row < 0:
+				print "ILLEGAL MOVE IN STATE CONSTRUCTOR"
+
 			self.board[row][moveColumn] = moveSymbol	# update board to reflect move
 			self.moveFromPrev = (row, moveColumn)		# set last move position
 
@@ -35,6 +38,7 @@ class State():
 					print "_",
 			print ""
 
+	# populate the initial state based on row / col dimensions of game
 	def constructInitState(self, rowDimensions, colDimensions):
 		self.board = []
 		self.lastMoveSym = None
@@ -45,11 +49,14 @@ class State():
 			for c in range(0, colDimensions):
 				self.board[r].append(None)
 
+	# check if state is win relative to last move symbol
 	def isWin(self):
 		pass
 
+	# check if state is tie (if all positions filled)
 	def isTie(self):
 		pass
 
+	# get list of successors of a state, using moves of a given symbol only
 	def getSuccessors(self, currentSymbol):
 		pass

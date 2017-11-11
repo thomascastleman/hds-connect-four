@@ -1,6 +1,7 @@
 
+import state
 
-class ConnectFourGame():
+class ConnectNGame():
 
 	def __init__(self, _n, _rows, _cols, _player1, _player2):
 
@@ -10,5 +11,10 @@ class ConnectFourGame():
 		self.player1 = _player1
 		self.player2 = _player2
 
-	def initiateGame():
+	def initiateGame(self):
 		pass
+
+	def getInitState(self):
+		s = state.State(None, None, None)
+		s.constructInitState(self.rows, self.cols)
+		return s

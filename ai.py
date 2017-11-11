@@ -1,6 +1,7 @@
 
+import game
 
-class AI():
+class AI(game.ConnectNGame):
 
 	def __init__(self, _symbol, _depth):
 		self.symbol = _symbol

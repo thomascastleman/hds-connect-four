@@ -1,13 +1,14 @@
 
-import util, game, player
+import util, game
 
 def main():
-	p1 = player.Player(util.Symbol.X)
-	p2 = player.Player(util.Symbol.O)
+	import human
+
+	p1 = human.Human(util.Symbol.X)
+	p2 = human.Human(util.Symbol.O)
 	g = game.ConnectNGame(2, 5, 5, p1, p2)
 
-	init = g.getInitState()
-	init.logState()
+	g.initiateGame()
 
 
 

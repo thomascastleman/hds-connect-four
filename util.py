@@ -1,6 +1,6 @@
 
 # types of player symbols
-class Symbol():
+class Symbol:
 	O = 0
 	X = 1
 

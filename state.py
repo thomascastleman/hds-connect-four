@@ -1,7 +1,7 @@
 
-import util
+import util, game
 
-class State():
+class State(game.ConnectNGame):
 
 	def __init__(self, prevBoard, moveColumn, moveSymbol):
 		
@@ -55,7 +55,10 @@ class State():
 
 	# check if state is tie (if all positions filled)
 	def isTie(self):
-		pass
+		for c in range(0, len(self.board[0])):
+			if self.board[0][c] == None:
+				return False
+		return True
 
 	# get list of successors of a state, using moves of a given symbol only
 	def getSuccessors(self, currentSymbol):

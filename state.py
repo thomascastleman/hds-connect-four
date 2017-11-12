@@ -23,6 +23,7 @@ class State(game.ConnectNGame):
 
 	# display state to console
 	def logState(self):
+		print ""
 		for i in range(0, len(self.board[0])):
 			print i,
 		print ""

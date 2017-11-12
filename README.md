@@ -1,2 +1,2 @@
 # hds-connect-four
-Connect Four AI using minimax
+Connect N AI using minimax

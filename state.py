@@ -36,8 +36,50 @@ class State(game.ConnectNGame):
 		return col in range(0, len(self.board[0])) and self.board[0][col] == None
 
 	# check if state is win relative to last move symbol
-	def isWin(self):
-		pass
+	def isWin(self, nToWin):
+		row, col = self.moveFromPrev
+		numRows, numCols = len(self.board), len(self.board[0])
+
+		# get horizontal possible win
+		rowSection = self.board[row]
+
+		# get vertical possible win
+		colSection = []
+		for r in range(0, len(self.board)):
+			colSection.append(self.board[r][col])
+
+		# get northeast diagonal possible win
+		r, c = row, col
+		neSection = []
+
+		while r + 1 < numRows and c - 1 >= 0:
+			r += 1
+			c -= 1
+		neSection.append(self.board[r][c])
+		while r - 1 >= 0 and c + 1 < numCols:
+			r -= 1
+			c += 1
+			neSection.append(self.board[r][c])
+
+		# get southeast diagonal possible win
+		r, c = row, col
+		seSection = []
+
+		while r + 1 < numRows and c + 1 < numCols:
+			r += 1
+			c += 1
+		seSection.append(self.board[r][c])
+		while r - 1 >= 0 and c - 1 >= 0:
+			r -= 1
+			c -= 1
+			seSection.append(self.board[r][c])
+
+		rowWin = checkSectionForWin(rowSection, nToWin, self.lastMoveSym)
+		colWin = checkSectionForWin(colSection, nToWin, self.lastMoveSym)
+		neWin = checkSectionForWin(neSection, nToWin, self.lastMoveSym)
+		seWin = checkSectionForWin(seSection, nToWin, self.lastMoveSym)
+
+		return rowWin or colWin or neWin or seWin
 
 	# check if state is tie (if all positions filled)
 	def isTie(self):
@@ -47,5 +89,5 @@ class State(game.ConnectNGame):
 		return True
 
 	# get list of successors of a state, using moves of a given symbol only
-	def getSuccessors(self, currentSymbol):
+	def getSuccessors(self, symbolOfMove):
 		pass

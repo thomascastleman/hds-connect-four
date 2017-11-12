@@ -5,8 +5,8 @@ from human import Human
 
 def main():
 
-	p1 = Human(Symbol.X)
-	p2 = Human(Symbol.O)
+	p1 = Human("Player 1", Symbol.X)
+	p2 = Human("Player 2", Symbol.O)
 	g = ConnectNGame(4, 6, 7, p1, p2)
 
 	g.initiateGame()

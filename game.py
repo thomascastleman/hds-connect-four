@@ -13,19 +13,29 @@ class ConnectNGame(object):
 	def initiateGame(self):
 		self.currentState = self.getInitState()
 
+		players = [self.player1, self.player2]
+		winner = None
+		tie = False
+
 		while True:
 
-			self.solicitMoveFromPlayer(self.player1)
-			if self.currentState.isWin() or self.currentState.isTie():
+			for player in players:
+				self.solicitMoveFromPlayer(player)
+				self.currentState.logState()
+
+				if self.currentState.isWin(self.n):
+					winner = player
+					break
+				elif self.currentState.isTie():
+					tie = True
+
+
+			if winner != None:
+				print winner.name, " wins."
 				break
-
-			self.currentState.logState()
-
-			self.solicitMoveFromPlayer(self.player2)
-			if self.currentState.isWin() or self.currentState.isTie():
+			elif tie:
+				print "Tie."
 				break
-
-			self.currentState.logState()
 
 	# get player decision and update board
 	def solicitMoveFromPlayer(self, player):

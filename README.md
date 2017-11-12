@@ -1,2 +1,2 @@
-# hds-connect-four
+# hds-connect-n
 Connect N AI using minimax

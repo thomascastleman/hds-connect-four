@@ -4,7 +4,8 @@ import re	# regex to match non numeric chars
 
 class Human(game.ConnectNGame):
 
-	def __init__(self, _symbol):
+	def __init__(self, _name, _symbol):
+		self.name = _name
 		self.symbol = _symbol
 
 	def getMove(self, state):

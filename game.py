@@ -28,6 +28,7 @@ class ConnectNGame(object):
 					break
 				elif self.currentState.isTie():
 					tie = True
+					break
 
 
 			if winner != None:

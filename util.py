@@ -1,5 +1,5 @@
 
-# types of player symbols
+# types of player symbols to their numeric equivalents for board serialization
 class Symbol:
 	O = 0
 	X = 1

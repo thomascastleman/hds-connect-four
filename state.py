@@ -1,12 +1,13 @@
 
-import util, game
+import game
+from util import *
 
 class State(game.ConnectNGame):
 
 	def __init__(self, prevBoard, moveColumn, moveSymbol):
 		
 		if prevBoard != None:
-			self.board = util.copyBoard(prevBoard)	# copy board of previous state
+			self.board = copyBoard(prevBoard)	# copy board of previous state
 			self.lastMoveSym = moveSymbol			# record symbol that led to this state
 
 			# find lowest open position in column
@@ -30,24 +31,12 @@ class State(game.ConnectNGame):
 		print ""
 		for row in self.board:
 			for col in row:
-				if col == util.Symbol.X:
-					print "X",
-				elif col == util.Symbol.O:
-					print "O",
-				else:
-					print "_",
+				print "X" if col == Symbol.X else "O" if col == Symbol.O else "_",
 			print ""
 
-	# populate the initial state based on row / col dimensions of game
-	def constructInitState(self, rowDimensions, colDimensions):
-		self.board = []
-		self.lastMoveSym = None
-		self.moveFromPrev = None
-
-		for r in range(0, rowDimensions):
-			self.board.append([])
-			for c in range(0, colDimensions):
-				self.board[r].append(None)
+	# check if a given move can be legally made on this state
+	def checkMoveLegality(self, col):
+		pass
 
 	# check if state is win relative to last move symbol
 	def isWin(self):

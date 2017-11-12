@@ -1,5 +1,5 @@
 
-class ConnectNGame:
+class ConnectNGame(object):
 
 	def __init__(self, _n, _rows, _cols, _player1, _player2):
 
@@ -19,9 +19,13 @@ class ConnectNGame:
 			if self.currentState.isWin() or self.currentState.isTie():
 				break
 
+			self.currentState.logState()
+
 			self.solicitMoveFromPlayer(self.player2)
 			if self.currentState.isWin() or self.currentState.isTie():
 				break
+
+			self.currentState.logState()
 
 	# get player decision and update board
 	def solicitMoveFromPlayer(self, player):
@@ -33,5 +37,13 @@ class ConnectNGame:
 	def getInitState(self):
 		import state
 		s = state.State(None, None, None)
-		s.constructInitState(self.rows, self.cols)
+		s.board = []
+		s.lastMoveSym = None
+		s.moveFromPrev = None
+
+		for r in range(0, self.rows):
+			s.board.append([])
+			for c in range(0, self.cols):
+				s.board[r].append(None)
+
 		return s

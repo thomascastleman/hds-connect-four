@@ -1,6 +1,6 @@
 
 import game
-import re
+import re	# regex to match non numeric chars
 
 class Human(game.ConnectNGame):
 

@@ -1,16 +1,15 @@
 
-import util, game
+from util import Symbol
+from game import ConnectNGame
+from human import Human
 
 def main():
-	import human
 
-	p1 = human.Human(util.Symbol.X)
-	p2 = human.Human(util.Symbol.O)
-	g = game.ConnectNGame(4, 6, 7, p1, p2)
+	p1 = Human(Symbol.X)
+	p2 = Human(Symbol.O)
+	g = ConnectNGame(4, 6, 7, p1, p2)
 
 	g.initiateGame()
-
-
 
 if __name__ == "__main__":
 	main()

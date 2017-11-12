@@ -18,9 +18,6 @@ class State(game.ConnectNGame):
 					row -= 1
 					break
 
-			if row < 0:
-				print "ILLEGAL MOVE IN STATE CONSTRUCTOR"
-
 			self.board[row][moveColumn] = moveSymbol	# update board to reflect move
 			self.moveFromPrev = (row, moveColumn)		# set last move position
 
@@ -36,7 +33,7 @@ class State(game.ConnectNGame):
 
 	# check if a given move can be legally made on this state
 	def checkMoveLegality(self, col):
-		pass
+		return col in range(0, len(self.board[0])) and self.board[0][col] == None
 
 	# check if state is win relative to last move symbol
 	def isWin(self):

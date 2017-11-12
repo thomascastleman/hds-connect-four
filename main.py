@@ -6,7 +6,7 @@ def main():
 
 	p1 = human.Human(util.Symbol.X)
 	p2 = human.Human(util.Symbol.O)
-	g = game.ConnectNGame(2, 5, 5, p1, p2)
+	g = game.ConnectNGame(4, 6, 7, p1, p2)
 
 	g.initiateGame()
 

@@ -3,11 +3,16 @@ class ConnectNGame(object):
 
 	def __init__(self, _n, _rows, _cols, _player1, _player2):
 
-		self.n = _n
-		self.rows = _rows
-		self.cols = _cols
-		self.player1 = _player1
-		self.player2 = _player2
+		# protect against illegal game parameters
+		if _n > 0 and _rows > 0 and _cols > 0 and (_n < _rows or _n < _cols):
+			self.n = _n
+			self.rows = _rows
+			self.cols = _cols
+			self.player1 = _player1
+			self.player2 = _player2
+		else:
+			print "\nILLEGAL GAME ERROR\n"
+			sys.exit()
 
 	# commence game 
 	def initiateGame(self):

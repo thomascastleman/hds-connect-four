@@ -12,7 +12,7 @@ class AI:
 
 	# solicit move from AI
 	def getMove(self, state):
-		bestState = self.minimax(state, True, 1, self.depth)
+		bestState = self.minimax(state, True, 1, self.depth)[0]
 		return bestState.moveFromPrev[1]	# return column of move
 
 	# determine predicted value of state: returns (state, cost, depth)
@@ -21,18 +21,18 @@ class AI:
 		if curState.isWin(self.game.n):
 			# if win
 			if curState.lastMoveSym == self.symbol:
-				return (inf.POS_INFINITY, depth)
+				return (curState, inf.POS_INFINITY, depth)
 			# if loss
 			else:
-				return (inf.NEG_INFINITY, depth)
+				return (curState, inf.NEG_INFINITY, depth)
 
 		# if tie
 		elif curState.isTie():
-			return (0, depth)
+			return (curState, 0, depth)
 
 		# if max depth reached
 		elif depth == maxDepth:
-			return (self.heuristic(curState), depth)
+			return (curState, self.heuristic(curState), depth)
 
 		# otherwise evaluate recursively
 		else:
@@ -42,6 +42,10 @@ class AI:
 			for child in children:
 				# calculate child cost
 				state, cost, childDepth = self.minimax(child, not isMaximizing, depth + 1, maxDepth)
+
+				# default best to first child
+				if children.index(child) == 0:
+					bestState, bestCost, bestDepth = state, cost, childDepth
 
 				if isMaximizing:
 					# choose higher cost
@@ -76,5 +80,5 @@ class AI:
 
 			return (bestState, bestCost, bestDepth)
 
-	def heuristic(self, curState):
-		pass
+	def heuristic(self, state):
+		return 0 # NULL HEURISTIC

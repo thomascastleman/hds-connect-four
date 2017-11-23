@@ -10,6 +10,9 @@ class ConnectNGame(object):
 			self.cols = _cols
 			self.player1 = _player1
 			self.player2 = _player2
+
+			self.player1.game = self
+			self.player2.game = self
 		else:
 			print "\nILLEGAL GAME ERROR\n"
 			sys.exit()
@@ -45,6 +48,7 @@ class ConnectNGame(object):
 
 	# get player decision and update board
 	def solicitMoveFromPlayer(self, player):
+		print "\n" + player.name + "'s move:"
 		import state
 		move = player.getMove(self.currentState)
 		self.currentState = state.State(self.currentState.board, move, player.symbol)

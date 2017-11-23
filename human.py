@@ -1,12 +1,12 @@
 
-import game
 import re	# regex to match non numeric chars
 
-class Human(game.ConnectNGame):
+class Human:
 
 	def __init__(self, _name, _symbol):
 		self.name = _name
 		self.symbol = _symbol
+		self.game = None	# reference to game that contains this human
 
 	def getMove(self, state):
 		while True:

@@ -4,6 +4,10 @@ class Symbol:
 	O = 0
 	X = 1
 
+class inf:
+	POS_INFINITY = float('inf')
+	NEG_INFINITY = float('-inf')
+
 # deep copies a board
 def copyBoard(board):
 	newBoard = []

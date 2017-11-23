@@ -1,8 +1,7 @@
 
-import game
 from util import *
 
-class State(game.ConnectNGame):
+class State:
 
 	def __init__(self, prevBoard, moveColumn, moveSymbol):
 		
@@ -34,7 +33,7 @@ class State(game.ConnectNGame):
 
 	# check if a given move can be legally made on this state
 	def checkMoveLegality(self, col):
-		return col in range(0, len(self.board[0])) and self.board[0][col] == None
+		return col in range(len(self.board[0])) and self.board[0][col] == None
 
 	# check if state is win relative to last move symbol
 	def isWin(self, nToWin):
@@ -91,4 +90,8 @@ class State(game.ConnectNGame):
 
 	# get list of successors of a state, using moves of a given symbol only
 	def getSuccessors(self, symbolOfMove):
-		pass
+		successors = []
+		for col in range(len(self.board[0])):	# for each possible column
+			if self.checkMoveLegality(col):		# if move legal
+				successors.append(State(self.board, col, symbolOfMove))
+		return successors

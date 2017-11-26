@@ -28,8 +28,9 @@ class ConnectNGame(object):
 		while True:
 
 			for player in players:
-				self.solicitMoveFromPlayer(player)
+
 				self.currentState.logState()
+				self.solicitMoveFromPlayer(player)
 
 				if self.currentState.isWin(self.n):
 					winner = player

@@ -19,10 +19,38 @@ def main():
 
 
 
-	section = [None, 0, None, 1, 1, 0, None, 1]
-	from util import minWinOnSection
+	# section = [None, 0, None, 1, 1, 0, None, 1]
+	# from util import minWinOnSection
 
-	print minWinOnSection(section, 4, 1)
+	# print minWinOnSection(section, 4, 1)
+
+	board = [
+		[None, None, None, 0],
+		[1, 	0, 	None,  1],
+		[0, 	0,  1,     1],
+		[1, 	1,  1, 	   0]
+	]	
+
+	"""
+	NE : 
+	0, 0, None
+	1, 0, None, 0
+	1, 1, 1
+
+	SE:
+	1, None, None
+	0, 1, 0, None
+	1, 0, 1
+
+	"""
+
+
+	n = 3
+	sym = 1
+
+	from util import minMovesFromWin
+
+	minMovesFromWin(board, n, sym)
 
 
 

@@ -33,21 +33,63 @@ def minMovesFromWin(board, n, symbol):
 	allSections = []
 
 	# get row sections:
-	
+	for row in board:
+		allSections.append(row)
 
 	# get col sections:
+	for c in range(len(board[0])):
+		col = []
+		for r in range(len(board)):
+			col.append(board[r][c])
+		allSections.append(col)
 
+	# get northeast diagonal sections
+	
+	numRows = len(board)
+	numCols = len(board[0])
 
-	# get northeast diagonal sections:
+	col = 0
+	for row in range(n - 1, numRows - 1):
+		r, c = row, col
+		diag = []
+		while r >= 0 and col < numCols:
+			diag.append(board[r][c])
+			r -= 1
+			c += 1
+		allSections.append(diag)
 
+	row = numRows - 1
+	for col in range(0, numCols - n + 1):
+		r, c = row, col
+		diag = []
+		while r >= 0 and c < numCols:
+			diag.append(board[r][c])
+			r -= 1
+			c += 1
+		allSections.append(diag)
 
 	# get southeast diagonal sections:
 
+	col = numCols - 1
+	for row in range(n - 1, numRows - 1):
+		r, c = row, col
+		diag = []
+		while r >= 0 and c >= 0:
+			diag.append(board[r][c])
+			r -= 1
+			c -= 1
+		allSections.append(diag)
 
-
-
-
-
+	row = numRows - 1
+	for col in range(numCols - 1, n - 2, - 1):
+		r, c = row, col
+		diag = []
+		while r >= 0 and c >= 0:
+			diag.append(board[r][c])
+			r -= 1
+			c -= 1
+		allSections.append(diag)
+	
 	minimum = None
 	for section in allSections:
 		num = minWinOnSection(section, n, symbol)
@@ -61,7 +103,6 @@ def minWinOnSection(section, n, symbol):
 
 	for i in range(len(section) - n + 1):
 		nsection = section[i:i + n]
-		print nsection
 		# get num moves
 		num = numFromWinOnNSection(nsection, symbol)
 		# update min

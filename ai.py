@@ -1,6 +1,5 @@
 
-import game
-from util import inf, Symbol
+from util import inf, Symbol, minMovesFromWin
 
 class AI:
 
@@ -81,4 +80,4 @@ class AI:
 			return (bestState, bestCost, bestDepth)
 
 	def heuristic(self, state):
-		return 0 # NULL HEURISTIC
+		return minMovesFromWin(state.board, self.game.n, self.symbol)

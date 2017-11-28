@@ -89,11 +89,14 @@ def minMovesFromWin(board, n, symbol):
 			r -= 1
 			c -= 1
 		allSections.append(diag)
-	
+
 	minimum = None
 	for section in allSections:
 		num = minWinOnSection(section, n, symbol)
-		minimum = num if minimum == None else num if num < minimum else minimum
+		if minimum == None:
+			minimum = num
+		elif num != None and num < minimum:
+			minimum = num
 	return minimum
 
 
@@ -105,8 +108,12 @@ def minWinOnSection(section, n, symbol):
 		nsection = section[i:i + n]
 		# get num moves
 		num = numFromWinOnNSection(nsection, symbol)
+
 		# update min
-		minimum = num if minimum == None else num if num < minimum else minimum
+		if minimum == None:
+			minimum = num
+		elif num != None and num < minimum:
+			minimum = num
 
 	return minimum
 

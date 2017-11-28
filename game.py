@@ -29,6 +29,9 @@ class ConnectNGame(object):
 
 			for player in players:
 
+				# from util import minMovesFromWin
+				# print "From p1 win: ", minMovesFromWin(self.currentState.board, self.n, self.player1.symbol)
+
 				self.currentState.logState()
 				self.solicitMoveFromPlayer(player)
 
